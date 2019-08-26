@@ -1,4 +1,6 @@
-# vue-firebase-chat
+# Vue.js Tutorial: Building Firebase Realtime DB Chat Web App
+
+This source code is part of [Vue.js Tutorial: Building Firebase Realtime DB Chat Web App]().
 
 ## Project setup
 ```
