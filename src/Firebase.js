@@ -1,11 +1,11 @@
 import * as firebase from 'firebase';
 
 const config = {
-  apiKey: "AIzaSyBsj_8W9G6OPp2tILLgsJMC1kyEGiDuTo4",
-  authDomain: "vue-chat-app-88c82.firebaseapp.com",
-  databaseURL: "https://vue-chat-app-88c82.firebaseio.com/",
-  projectId: "vue-chat-app-88c82",
-  storageBucket: "gs://vue-chat-app-88c82.appspot.com/"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  databaseURL: "YOUR_DATABASE_URL",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET"
 };
 firebase.initializeApp(config);
 
