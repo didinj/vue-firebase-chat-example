@@ -1,57 +1,20 @@
 {
-  "name": "vue-firebase-chat",
-  "version": "0.1.0",
+  "name": "vue3-firebase-chat",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap-vue": "^2.0.0-rc.19",
-    "core-js": "^2.6.5",
-    "firebase": "^6.4.2",
-    "vue": "^2.6.10",
-    "vue-chat-scroll": "^1.3.5",
-    "vue-router": "^3.0.3"
+    "firebase": "^9.23.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.4.4",
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "mutationobserver-shim": "^0.3.3",
-    "node-sass": "^4.12.0",
-    "popper.js": "^1.15.0",
-    "portal-vue": "^2.1.4",
-    "sass-loader": "^7.1.0",
-    "vue-cli-plugin-bootstrap-vue": "^0.4.0",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "@vitejs/plugin-vue": "^5.2.3",
+    "vite": "^6.3.5"
+  }
 }

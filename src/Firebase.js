@@ -1,12 +1,10 @@
-import * as firebase from 'firebase';
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 
-const config = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET"
+const firebaseConfig = {
+  /* your config */
 };
-firebase.initializeApp(config);
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
-export default firebase;
+export { db };

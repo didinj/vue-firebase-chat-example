@@ -1,47 +1,63 @@
 <template>
-  <b-row>
-    <b-col cols="12">
-      <h2>
-        Login
-      </h2>
-      <b-jumbotron>
-        <b-form @submit="onSubmit">
-          <b-form-group>
-            <b-form-input id="nickname" v-model.trim="login.nickname" placeholder="Enter your nickname"></b-form-input>
-          </b-form-group>
-          <b-button type="submit" variant="primary" :disabled="!login.nickname">Login</b-button>
-        </b-form>
-      </b-jumbotron>
-    </b-col>
-  </b-row>
+  <div class="login">
+    <h2>Login</h2>
+    <input v-model="username" type="text" placeholder="Enter your username" />
+    <button @click="login">Login</button>
+  </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
-import router from '../router'
+// Refs
+const email = ref('')
+const password = ref('')
+const router = useRouter()
 
-export default {
-  name: 'AddBoard',
-  data () {
-    return {
-      login: { nickname: '' }
-    }
-  },
-  methods: {
-    onSubmit (evt) {
-      evt.preventDefault()
-
-      router.push({
-        name: 'RoomList',
-        params: { nickname: this.login.nickname }
-      })
-    }
+// Login function
+const login = async () => {
+  try {
+    const auth = getAuth()
+    await signInWithEmailAndPassword(auth, email.value, password.value)
+    router.push('/chat')
+  } catch (err) {
+    alert(err.message)
   }
 }
 </script>
 
-<style>
-  .jumbotron {
-    padding: 2rem;
-  }
+<style scoped>
+.login {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.login h2 {
+  margin-bottom: 1.5rem;
+}
+
+.login input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+}
+
+.login button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #42b983;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 </style>

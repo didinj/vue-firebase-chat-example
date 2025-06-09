@@ -1,54 +1,62 @@
 <template>
-  <b-row>
-    <b-col cols="12">
-      <h2>
-        Add Room
-        <b-link @click="$router.go(-1)">(Room List)</b-link>
-      </h2>
-      <b-jumbotron>
-        <b-form @submit="onSubmit">
-          <b-form-group>
-            <b-form-input id="roomname" v-model.trim="room.roomName" placeholder="Enter Room Name"></b-form-input>
-          </b-form-group>
-          <b-button type="submit" variant="primary" :disabled="!room.roomName">Save</b-button>
-        </b-form>
-      </b-jumbotron>
-    </b-col>
-  </b-row>
+  <div class="add-room">
+    <h2>Add New Room</h2>
+    <input v-model="roomName" type="text" placeholder="Room name" />
+    <button @click="createRoom">Create Room</button>
+  </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { getDatabase, ref as dbRef, push } from 'firebase/database'
 
-import firebase from '../Firebase'
-import router from '../router'
+const router = useRouter()
+const roomName = ref('')
 
-export default {
-  name: 'AddBoard',
-  data () {
-    return {
-      ref: firebase.database().ref('chatrooms/'),
-      room: { roomName: '' }
-    }
-  },
-  methods: {
-    onSubmit (evt) {
-      evt.preventDefault()
+const createRoom = () => {
+  const name = roomName.value.trim()
+  if (!name) return
 
-      let newData = this.ref.push()
-      newData.set({
-        roomName: this.room.roomName
-      })
-      router.go(-1)
-      .catch((error) => {
-        alert("Error adding document: ", error)
-      });
-    }
-  }
+  const db = getDatabase()
+  const roomsRef = dbRef(db, 'rooms')
+  push(roomsRef, { name })
+
+  roomName.value = ''
+  router.push('/rooms')
 }
 </script>
 
-<style>
-  .jumbotron {
-    padding: 2rem;
-  }
+<style scoped>
+.add-room {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.add-room h2 {
+  margin-bottom: 1.5rem;
+}
+
+.add-room input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+}
+
+.add-room button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #42b983;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 </style>
